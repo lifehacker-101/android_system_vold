@@ -64,7 +64,7 @@ using android::fs_mgr::ReadDefaultFstab;
 
 int main(int argc, char** argv) {
     atrace_set_tracing_enabled(false);
-    setenv("ANDROID_LOG_TAGS", "*:d", 1);  // Do not submit with verbose logs enabled
+    setenv("ANDROID_LOG_TAGS", "*:v", 1);
     android::base::InitLogging(argv, &VoldLogger);
 
     LOG(INFO) << "Vold 3.0 (the awakening) firing up";
@@ -106,9 +106,9 @@ int main(int argc, char** argv) {
         exit(1);
     }
 
-    if (android::base::GetBoolProperty("vold.debug", false)) {
+//    if (android::base::GetBoolProperty("vold.debug", false)) {
         vm->setDebug(true);
-    }
+//    }
 
     if (vm->start()) {
         PLOG(ERROR) << "Unable to start VolumeManager";
